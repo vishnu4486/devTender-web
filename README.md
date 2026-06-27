@@ -1,3 +1,12 @@
+#DevTinder
+
+-create a vite + react app
+-Remove unecessary code and create  a hello world app
+-tailwind css install way  docmention
+ 
+
+
+
 # React + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
