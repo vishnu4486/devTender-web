@@ -2,8 +2,25 @@
 
 -create a vite + react app
 -Remove unecessary code and create  a hello world app
--tailwind css install way  docmention
- 
+-install Tailwind css
+-install Daisy UI
+-add NavBar component to app.jx
+-Create a NavBar Seprate Component file
+-install routing in our application 
+-create Brouser Routes Route Body Route
+-create an Outlet in your Body Component
+-create footer
+
+-to create loagin 
+
+
+Body
+ NavBar
+  Feed
+  Login
+  Connection
+  profile
+
 
 
 
