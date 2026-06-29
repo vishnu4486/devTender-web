@@ -11,7 +11,11 @@
 -create an Outlet in your Body Component
 -create footer
 
--to create loagin 
+-to create login 
+-install axios'-cors install cors in backen  add configration credition true both front en ad backed 
+
+-install redux 
+-install react /redux redux-toolkit 
 
 
 Body
