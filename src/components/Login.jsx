@@ -6,15 +6,20 @@ import { useNavigate } from "react-router-dom";
 import { BASE_URL } from "../utils/constent";
 
 const Login = () => {
-  const [emailId, setEmailId] = useState("vsb@gmail.com");
-  const [password, setPassword] = useState("Ind@1234");
+  const [emailId, setEmailId] = useState("");
+  const [password, setPassword] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const[isLoggin,setIsLoggin]=useState(true) 
   const [error, setError] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const handelLogin = async () => {
     try {
-      const res = await axios.post(
+
+      if(isLoggin){
+    const res = await axios.post(
         `${BASE_URL}/login`,
         {
           emailId,
@@ -24,9 +29,31 @@ const Login = () => {
           withCredentials: true,
         },
       );
-      console.log("res", res);
       dispatch(addUser(res.data.data));
       navigate("/");
+      }else{
+const res = await axios.post(
+        `${BASE_URL}/signup`,
+        {
+          firstName,
+          lastName,
+          emailId,
+          password,
+        },
+        {
+          withCredentials: true,
+        },
+      );
+      dispatch(addUser(res.data.data));
+      navigate("/profile");
+      //  setIsLoggin(true)
+      //  setError("")
+      //  setEmailId("");
+      //  setPassword("")
+      //  setFirstName("")
+      //  setLastName("")
+      }
+  
     } catch (err) {
        console.log("Login Error:", err);
 
@@ -41,7 +68,34 @@ const Login = () => {
     <div className="flex justify-center align-middle my-40">
       <div className="card card-dash bg-base-200 w-96">
         <div className="card-body">
-          <h2 className="card-title justify-center">Login</h2>
+          <h2 className="card-title justify-center">{isLoggin ?"Login" :"Sign Up"}</h2>
+
+          {
+            !isLoggin &&<>
+                      <fieldset className="fieldset">
+            <legend className="fieldset-legend">First name</legend>
+            <input
+              type="text"
+              className="input"
+              placeholder="Please enter the emailid"
+              onChange={(e) => setFirstName(e.target.value)}
+              value={firstName}
+            />
+          </fieldset>
+
+                    <fieldset className="fieldset">
+            <legend className="fieldset-legend">Last name </legend>
+            <input
+              type="text"
+              className="input"
+              placeholder="Please enter the emailid"
+              onChange={(e) => setLastName(e.target.value)}
+              value={lastName}
+            />
+          </fieldset>
+            
+            </>
+          }
           <fieldset className="fieldset">
             <legend className="fieldset-legend">Email Id</legend>
             <input
@@ -63,10 +117,18 @@ const Login = () => {
             />
           </fieldset>
           <p className="text-red-500">{error} </p>
-          <div className="card-actions justify-center m-5">
+          <div className="card-actions justify-center m-5 flex-col">
             <button className="btn btn-primary" onClick={handelLogin}>
-              Buy Now
+             {isLoggin ?"Login" :"Sign Up"}
             </button>
+            <p
+  className="text-center text-primary cursor-pointer mt-4 hover:underline"
+  onClick={() => setIsLoggin((value) => !value)}
+>
+  {isLoggin
+    ? "Don't have an account? Sign up"
+    : "Already have an account? Log in"}
+</p>
           </div>
         </div>
       </div>

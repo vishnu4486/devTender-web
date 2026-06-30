@@ -29,11 +29,12 @@ const Feed = () => {
     getFeed();
   }, []);
 
-  console.log("Redux Feed:", feedList);
 
+if (!feedList) return <h1>No ned feed is avalble </h1>
+if (feedList?.length<=0) return <h1>No ned feed is avalble </h1>
   return (
     <div className="flex justify-items-center justify-center">
-      <UserList feedList={feedList}/>
+      <UserList feedList={feedList[0]}/>
     </div>
   );
 };

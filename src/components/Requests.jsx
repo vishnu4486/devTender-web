@@ -26,9 +26,10 @@ const Requests = () => {
 
   const requestResponse = async (status, id) => {
     try {
-      const res = await axios.post(`${BASE_URL}/request/send/${status}/${id}`, {
+      const res = await axios.post(`${BASE_URL}/request/review/${status}/${id}`,{}, {
         withCredentials: true,
       });
+    //   gerRequestReceved();
       console.log("Request respose res", res);
     } catch (error) {
       console.log("error", error);
@@ -57,7 +58,7 @@ const Requests = () => {
             <div className="card-actions justify-end mt-4">
               <button
                 className="btn btn-primary"
-                onClick={() => requestResponse("interested", connect._id)}
+                onClick={() => requestResponse("accepted", connect._id)}
               >
                 Accepat
               </button>
